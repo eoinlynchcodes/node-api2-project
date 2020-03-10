@@ -6,7 +6,7 @@ router.post('/api/posts', (req, res) => {
     if(!req.body.title || !req.body.contents){
         res.status(400).json({ errorMessage: "Please provide title and contents for the post."})
     } else if( req.body.title === true || req.body.contents === true ) {
-        insert(req);
+        insert(post);
         res.status(201);
         return post;
     } else {
@@ -22,7 +22,7 @@ router.post('/api/posts/:id/comments', (req, res) => {
         // How do you cancel the request?
         res.status(400).json({ errorMessage: "There was an error while saving the post to the database."})
     } else {
-        // There is an error while saving the context
+        insertComment(comment)
         res.status(201);
         return res;    
     }
