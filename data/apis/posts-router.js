@@ -28,7 +28,11 @@ router.post('/api/posts/:id/comments', (req, res) => {
     }
 })
 
-router.get('api/posts/id', (req, res) => {
+// router.get('/api/posts', (req, res) => {
+
+// })
+
+router.get('/api/posts/id', (req, res) => {
     if(req.id === null){
         res.status(404).json({ message: "The post with the specified ID does not exist." })
     } if(req === null){
@@ -37,7 +41,27 @@ router.get('api/posts/id', (req, res) => {
 })
 
 router.get('/api/posts/:id/comments', (req, res) => {
-    
+    if(req === null){
+        res.status(404).json({message: "The post with the specified ID does not exist."})
+    } 
+})
+
+router.delete('/api/posts/:id', (req, res) => {
+    if(req.id === null){
+        res.status(404).json({ message: "The post with the specified ID does not exist." })
+    }
+})
+
+router.put('/api/posts/:id', (req, res) => {
+    const { comment } = req.comment;
+
+    if(req.id === null){
+        res.status(404).json({ message: "The post with the specified ID does not exist." })
+    } else if(req.body === null || req.contents === null){
+        res.status(400).json({ errorMessage: "Please provide title and contents for the post." })
+    } else if( req === true){
+
+    }
 })
 
 module.exports = router
